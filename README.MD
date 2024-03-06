@@ -20,11 +20,13 @@ docker run -ti -p 7860:7860 logspace/langflow:latest langflow
 
 I am using **[LM Studio](https://lmstudio.ai/)** to host my own chat model.
 
-I particularly like the following models for their consistantly fast and good responses:
+If you have 24GB of VRAM I particularly like the following model for use with langchain:
 
-    TheBloke**/**Mistral-7B-Instruct-v0.2-GGUF**/**mistral-7b-instruct-v0.2.Q8_0.gguf
+    TheBloke/deepseek-coder-33B-instruct-GGUF/deepseek-coder-33b-instruct.Q3_K_L.gguf
 
-    TheBloke**/**deepseek-coder-33B-instruct-GGUF**/**deepseek-coder-33b-instruct.Q3_K_L.gguf
+If your GPU has 12GB of VRAM you can try this model, but I have found the responses not always as good for prompting documents.
+
+    TheBloke/Mistral-7B-Instruct-v0.2-GGUF/mistral-7b-instruct-v0.2.Q8_0.gguf
 
 ## Embeddings Models
 
@@ -38,7 +40,9 @@ I use LocalAI and one of the following models:
 
 I am using a Postgres Server with PGVector extension installed as my Vector Store.
 
-docker pull pgvector/pgvector:pg16
+docker run -p 5432:5432 -e POSTGRES_PASSWORD=secret pgvector/pgvector:pg16 pgvector
+
+Your user will be postgres, change the password to something. The data will be loaded to the public.document schema.table.
 
 I find this just as easy to use and understand as Pinecone except it's free. I am sure you could do some load balancing and horizontal scaling if you wanted to match its performance.
 
