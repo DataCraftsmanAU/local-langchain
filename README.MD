@@ -1,10 +1,10 @@
-# Langchain Projects
+# Locally Hosted Langchain Projects
 
 There are 2 really cool pipeline builder tools for working with Langchain called flowise and langflow. I found them both to have strengths and weaknesses however they are both very good for understanding how to build projects using Langchain.
 
 I find making the project in flowise first and then converting it to langchain code using gpt is the fastest way to get a working product.
 
-I am using a Postgres Server for structured table storage.
+I am using a Postgres Server for structured data for testing SQL queries.
 
 I also run everything in Docker. Will probably make a docker compose at some point but there are just 4 docker commands.
 
