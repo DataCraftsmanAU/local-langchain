@@ -1,12 +1,12 @@
 # Langchain Projects
 
-There are 2 really cool pipeline builder tools for working with Langchain called flowwise and langflow. I found them both to have strengths and weaknesses however they are both very good for understanding how to build projects using Langchain.
+There are 2 really cool pipeline builder tools for working with Langchain called flowise and langflow. I found them both to have strengths and weaknesses however they are both very good for understanding how to build projects using Langchain.
 
 I find making the project in flowise first and then converting it to langchain code using gpt is the fastest way to get a working product.
 
 I am using a Postgres Server for structured table storage.
 
-I also run everything in Docker. Will probably make a docker compose at some point.
+I also run everything in Docker. Will probably make a docker compose at some point but there are just 4 docker commands.
 
 ## Flowise
 
@@ -54,10 +54,10 @@ When your Chat model detects a maths question it attempts to use numpy as it's t
 
 ### Chat with Search and Calculator
 
-![1709725147119](https://file+.vscode-resource.vscode-cdn.net/d%3A/deai/image/README/1709725147119.png)
+![1709725147119](image/README/1709725147119.png)
 
 ### Chat with multiprompts
 
 ![1709725264507](image/README/1709725264507.png)
 
-### Chat with files using vector store and embeddings![1709725123303](https://file+.vscode-resource.vscode-cdn.net/d%3A/deai/image/README/1709725123303.png)
+### Chat with files using vector store and embeddings![1709725123303](image/README/1709725123303.png)
