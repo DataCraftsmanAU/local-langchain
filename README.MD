@@ -30,9 +30,9 @@ I particularly like the following models for their consistantly fast and good re
 
 I use LocalAI and one of the following models:
 
-[bert-cpp](https://github.com/skeskinen/bert.cpp)  		docker run -ti -p 8080:8080 localai/localai:v2.9.0-ffmpeg-core bert-cpp
+[bert-cpp](https://github.com/skeskinen/bert.cpp)  		docker run -ti -p 8080:8080 localai/localai:v2.9.0-cublas-cuda12 bert-cpp
 
-[all-minilm-l6-v2	](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2)docker run -ti -p 8080:8080 localai/localai:v2.9.0-ffmpeg all-minilm-l6-v2
+[all-minilm-l6-v2	](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2)docker run -ti -p 8080:8080 localai/localai:v2.9.0-cublas-cuda12 all-minilm-l6-v2
 
 ## Vector Store
 
