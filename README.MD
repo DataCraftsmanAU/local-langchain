@@ -27,11 +27,15 @@ Do your best to work the rest out.
 
 ## Flowise
 
+```
 docker run -p 3000:3000 flowiseai/flowise flowise
+```
 
 ## Langflow
 
+```
 docker run -p 7860:7860 logspace/langflow:latest langflow
+```
 
 ## Local Chat Models
 
@@ -49,15 +53,25 @@ If your GPU has 12GB of VRAM you can try this model, but I have found the respon
 
 I use LocalAI and one of the following models:
 
-[bert-cpp](https://github.com/skeskinen/bert.cpp)  		docker run -p 8080:8080 localai/localai:v2.9.0-cublas-cuda12 bert-cpp
+[bert-cpp](https://github.com/skeskinen/bert.cpp)
 
-[all-minilm-l6-v2	](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2)docker run -p 8080:8080 localai/localai:v2.9.0-cublas-cuda12 all-minilm-l6-v2
+```
+docker run -p 8080:8080 localai/localai:v2.9.0-cublas-cuda12 bert-cpp
+```
+
+[all-minilm-l6-v2	](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2)
+
+```
+docker run -p 8080:8080 localai/localai:v2.9.0-cublas-cuda12 all-minilm-l6-v2
+```
 
 ## Vector Store
 
 I am using a Postgres Server with PGVector extension installed as my Vector Store.
 
+```
 docker run -p 5432:5432 -e POSTGRES_PASSWORD=postgres pgvector/pgvector:pg16 pgvector
+```
 
 Your user will be postgres, change the password to something. The data will be loaded to the public.document schema.table.
 
