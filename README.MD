@@ -8,13 +8,30 @@ I am using a Postgres Server for structured data for testing SQL queries.
 
 I also run everything in Docker. Will probably make a docker compose at some point but there are just 4 docker commands.
 
+# Quickstart
+
+Install [LM Studio](https://lmstudio.ai/), download a model that will work on your GPU and start a local server.
+
+Install [Docker Desktop](https://docs.docker.com/desktop/install/windows-install/) then run these commands in terminal:
+
+```
+docker run -p 3000:3000 flowiseai/flowise flowise
+docker run -p 7860:7860 logspace/langflow:latest langflow
+docker run -p 8080:8080 localai/localai:v2.9.0-cublas-cuda12 bert-cpp
+docker run -p 5432:5432 -e POSTGRES_PASSWORD=postgres pgvector/pgvector:pg16 pgvector
+```
+
+Create a [SerpApi: Google Search API](https://serpapi.com/) if you want to use search features.
+
+Do your best to work the rest out.
+
 ## Flowise
 
-docker run -ti -p 3000:3000 flowiseai/flowise flowise
+docker run -p 3000:3000 flowiseai/flowise flowise
 
 ## Langflow
 
-docker run -ti -p 7860:7860 logspace/langflow:latest langflow
+docker run -p 7860:7860 logspace/langflow:latest langflow
 
 ## Local Chat Models
 
@@ -32,15 +49,15 @@ If your GPU has 12GB of VRAM you can try this model, but I have found the respon
 
 I use LocalAI and one of the following models:
 
-[bert-cpp](https://github.com/skeskinen/bert.cpp)  		docker run -ti -p 8080:8080 localai/localai:v2.9.0-cublas-cuda12 bert-cpp
+[bert-cpp](https://github.com/skeskinen/bert.cpp)  		docker run -p 8080:8080 localai/localai:v2.9.0-cublas-cuda12 bert-cpp
 
-[all-minilm-l6-v2	](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2)docker run -ti -p 8080:8080 localai/localai:v2.9.0-cublas-cuda12 all-minilm-l6-v2
+[all-minilm-l6-v2	](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2)docker run -p 8080:8080 localai/localai:v2.9.0-cublas-cuda12 all-minilm-l6-v2
 
 ## Vector Store
 
 I am using a Postgres Server with PGVector extension installed as my Vector Store.
 
-docker run -p 5432:5432 -e POSTGRES_PASSWORD=secret pgvector/pgvector:pg16 pgvector
+docker run -p 5432:5432 -e POSTGRES_PASSWORD=postgres pgvector/pgvector:pg16 pgvector
 
 Your user will be postgres, change the password to something. The data will be loaded to the public.document schema.table.
 
@@ -48,7 +65,7 @@ I find this just as easy to use and understand as Pinecone except it's free. I a
 
 ## Serp API
 
-Use this for adding search to your models. It grabs a few pages and loads them as context to your prompt.
+[SerpApi: Google Search API](https://serpapi.com/) 	Use this for adding search to your models. It grabs a few pages and loads them as context to your prompt.
 
 ## Calculator
 
