@@ -1,12 +1,12 @@
-# Locally Hosted Langchain Projects
+# Locally Hosted Langchain
 
-There are 2 really cool pipeline builder tools for working with Langchain called flowise and langflow. I found them both to have strengths and weaknesses however they are both very good for understanding how to build projects using Langchain.
+I've found 2 really cool pipeline builder tools for working with LangChain called Flowise and Langflow.
 
-I find making the project in flowise first and then converting it to langchain code using gpt is the fastest way to get a working product.
+I find that designing your project architecture in Flowise/langflow first and then converting it to LangChain code using your local LLM is the nicest way to learn LangChain.
 
-I am using a Postgres Server for structured data for testing SQL queries.
+Using Docker for all these examples but you can use whatever method you want.
 
-I also run everything in Docker. Will probably make a docker compose at some point but there are just 4 docker commands.
+I am also experimenting with reading SQL from a regular database and using it as context for prompts. Seems to work pretty well.
 
 ### Chat with files using PGVector store and local embeddings model:
 
