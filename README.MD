@@ -80,7 +80,7 @@ docker run -p 8080:8080 localai/localai:v2.9.0-cublas-cuda12 all-minilm-l6-v2
 I am using a Postgres Server with PGVector extension installed as my Vector Store.
 
 ```
-docker run -p 5432:5432 -e POSTGRES_PASSWORD=postgres pgvector/pgvector:pg16 pgvectordocker run -d -p 7860:7860 logspace/langflow
+docker run -p 5432:5432 -e POSTGRES_PASSWORD=postgres pgvector/pgvector:pg16
 ```
 
 Your user will be postgres, change the password to something. The data will be loaded to the public.document schema.table.
