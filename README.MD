@@ -10,7 +10,7 @@ I am also experimenting with reading SQL from a regular database and using it as
 
 ### Chat with files using PGVector store and local embeddings model:
 
-![1709725123303](https://file+.vscode-resource.vscode-cdn.net/d%3A/deai/image/README/1709725123303.png)
+![1709725123303](image/README/1709725123303.png)
 
 # Quickstart
 
