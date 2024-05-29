@@ -1,0 +1,674 @@
+{
+  "nodes": [
+    {
+      "id": "conversationalRetrievalQAChain_0",
+      "position": {
+        "x": 1872.6048300995617,
+        "y": 307.83059204718296
+      },
+      "type": "customNode",
+      "data": {
+        "id": "conversationalRetrievalQAChain_0",
+        "label": "Conversational Retrieval QA Chain",
+        "version": 2,
+        "name": "conversationalRetrievalQAChain",
+        "type": "ConversationalRetrievalQAChain",
+        "baseClasses": [
+          "ConversationalRetrievalQAChain",
+          "BaseChain",
+          "Runnable"
+        ],
+        "category": "Chains",
+        "description": "Document QA - built on RetrievalQAChain to provide a chat history component",
+        "inputParams": [
+          {
+            "label": "Return Source Documents",
+            "name": "returnSourceDocuments",
+            "type": "boolean",
+            "optional": true,
+            "id": "conversationalRetrievalQAChain_0-input-returnSourceDocuments-boolean"
+          },
+          {
+            "label": "Rephrase Prompt",
+            "name": "rephrasePrompt",
+            "type": "string",
+            "description": "Using previous chat history, rephrase question into a standalone question",
+            "warning": "Prompt must include input variables: {chat_history} and {question}",
+            "rows": 4,
+            "additionalParams": true,
+            "optional": true,
+            "default": "Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question.\n\nChat History:\n{chat_history}\nFollow Up Input: {question}\nStandalone Question:",
+            "id": "conversationalRetrievalQAChain_0-input-rephrasePrompt-string"
+          },
+          {
+            "label": "Response Prompt",
+            "name": "responsePrompt",
+            "type": "string",
+            "description": "Taking the rephrased question, search for answer from the provided context",
+            "warning": "Prompt must include input variable: {context}",
+            "rows": 4,
+            "additionalParams": true,
+            "optional": true,
+            "default": "I want you to act as a document that I am having a conversation with. Your name is \"AI Assistant\". Using the provided context, answer the user's question to the best of your ability using the resources provided.\nIf there is nothing in the context relevant to the question at hand, just say \"Hmm, I'm not sure\" and stop after that. Refuse to answer any question not about the info. Never break character.\n------------\n{context}\n------------\nREMEMBER: If there is no relevant information within the context, just say \"Hmm, I'm not sure\". Don't try to make up an answer. Never break character.",
+            "id": "conversationalRetrievalQAChain_0-input-responsePrompt-string"
+          }
+        ],
+        "inputAnchors": [
+          {
+            "label": "Chat Model",
+            "name": "model",
+            "type": "BaseChatModel",
+            "id": "conversationalRetrievalQAChain_0-input-model-BaseChatModel"
+          },
+          {
+            "label": "Vector Store Retriever",
+            "name": "vectorStoreRetriever",
+            "type": "BaseRetriever",
+            "id": "conversationalRetrievalQAChain_0-input-vectorStoreRetriever-BaseRetriever"
+          },
+          {
+            "label": "Memory",
+            "name": "memory",
+            "type": "BaseMemory",
+            "optional": true,
+            "description": "If left empty, a default BufferMemory will be used",
+            "id": "conversationalRetrievalQAChain_0-input-memory-BaseMemory"
+          }
+        ],
+        "inputs": {
+          "model": "{{chatLocalAI_0.data.instance}}",
+          "vectorStoreRetriever": "{{postgres_0.data.instance}}",
+          "memory": "",
+          "returnSourceDocuments": false,
+          "rephrasePrompt": "Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question.\n\nChat History:\n{chat_history}\nFollow Up Input: {question}\nStandalone Question:",
+          "responsePrompt": "I want you to act as a document that I am having a conversation with. Your name is \"AI Assistant\". Using the provided context, answer the user's question to the best of your ability using the resources provided.\nIf there is nothing in the context relevant to the question at hand, just say \"Hmm, I'm not sure\" and stop after that. Refuse to answer any question not about the info. Never break character.\n------------\n{context}\n------------\nREMEMBER: If there is no relevant information within the context, just say \"Hmm, I'm not sure\". Don't try to make up an answer. Never break character."
+        },
+        "outputAnchors": [
+          {
+            "id": "conversationalRetrievalQAChain_0-output-conversationalRetrievalQAChain-ConversationalRetrievalQAChain|BaseChain|Runnable",
+            "name": "conversationalRetrievalQAChain",
+            "label": "ConversationalRetrievalQAChain",
+            "description": "Document QA - built on RetrievalQAChain to provide a chat history component",
+            "type": "ConversationalRetrievalQAChain | BaseChain | Runnable"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 481,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1872.6048300995617,
+        "y": 307.83059204718296
+      },
+      "dragging": false
+    },
+    {
+      "id": "localAIEmbeddings_0",
+      "position": {
+        "x": 812.6782694567195,
+        "y": 508.64201164993824
+      },
+      "type": "customNode",
+      "data": {
+        "id": "localAIEmbeddings_0",
+        "label": "LocalAI Embeddings",
+        "version": 1,
+        "name": "localAIEmbeddings",
+        "type": "LocalAI Embeddings",
+        "baseClasses": [
+          "LocalAI Embeddings",
+          "Embeddings"
+        ],
+        "category": "Embeddings",
+        "description": "Use local embeddings models like llama.cpp",
+        "inputParams": [
+          {
+            "label": "Connect Credential",
+            "name": "credential",
+            "type": "credential",
+            "credentialNames": [
+              "localAIApi"
+            ],
+            "optional": true,
+            "id": "localAIEmbeddings_0-input-credential-credential"
+          },
+          {
+            "label": "Base Path",
+            "name": "basePath",
+            "type": "string",
+            "placeholder": "http://localhost:8080/v1",
+            "id": "localAIEmbeddings_0-input-basePath-string"
+          },
+          {
+            "label": "Model Name",
+            "name": "modelName",
+            "type": "string",
+            "placeholder": "text-embedding-ada-002",
+            "id": "localAIEmbeddings_0-input-modelName-string"
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "basePath": "http://host.docker.internal:1234/v1",
+          "modelName": "nomic-ai/nomic-embed-text-v1.5-GGUF"
+        },
+        "outputAnchors": [
+          {
+            "id": "localAIEmbeddings_0-output-localAIEmbeddings-LocalAI Embeddings|Embeddings",
+            "name": "localAIEmbeddings",
+            "label": "LocalAI Embeddings",
+            "description": "Use local embeddings models like llama.cpp",
+            "type": "LocalAI Embeddings | Embeddings"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 475,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 812.6782694567195,
+        "y": 508.64201164993824
+      },
+      "dragging": false
+    },
+    {
+      "id": "chatLocalAI_0",
+      "position": {
+        "x": 1474.0142505988224,
+        "y": -410.6441339498522
+      },
+      "type": "customNode",
+      "data": {
+        "id": "chatLocalAI_0",
+        "label": "ChatLocalAI",
+        "version": 2,
+        "name": "chatLocalAI",
+        "type": "ChatLocalAI",
+        "baseClasses": [
+          "ChatLocalAI",
+          "BaseChatModel",
+          "BaseChatModel",
+          "BaseLanguageModel",
+          "Runnable"
+        ],
+        "category": "Chat Models",
+        "description": "Use local LLMs like llama.cpp, gpt4all using LocalAI",
+        "inputParams": [
+          {
+            "label": "Connect Credential",
+            "name": "credential",
+            "type": "credential",
+            "credentialNames": [
+              "localAIApi"
+            ],
+            "optional": true,
+            "id": "chatLocalAI_0-input-credential-credential"
+          },
+          {
+            "label": "Base Path",
+            "name": "basePath",
+            "type": "string",
+            "placeholder": "http://localhost:8080/v1",
+            "id": "chatLocalAI_0-input-basePath-string"
+          },
+          {
+            "label": "Model Name",
+            "name": "modelName",
+            "type": "string",
+            "placeholder": "gpt4all-lora-quantized.bin",
+            "id": "chatLocalAI_0-input-modelName-string"
+          },
+          {
+            "label": "Temperature",
+            "name": "temperature",
+            "type": "number",
+            "step": 0.1,
+            "default": 0.9,
+            "optional": true,
+            "id": "chatLocalAI_0-input-temperature-number"
+          },
+          {
+            "label": "Max Tokens",
+            "name": "maxTokens",
+            "type": "number",
+            "step": 1,
+            "optional": true,
+            "additionalParams": true,
+            "id": "chatLocalAI_0-input-maxTokens-number"
+          },
+          {
+            "label": "Top Probability",
+            "name": "topP",
+            "type": "number",
+            "step": 0.1,
+            "optional": true,
+            "additionalParams": true,
+            "id": "chatLocalAI_0-input-topP-number"
+          },
+          {
+            "label": "Timeout",
+            "name": "timeout",
+            "type": "number",
+            "step": 1,
+            "optional": true,
+            "additionalParams": true,
+            "id": "chatLocalAI_0-input-timeout-number"
+          }
+        ],
+        "inputAnchors": [
+          {
+            "label": "Cache",
+            "name": "cache",
+            "type": "BaseCache",
+            "optional": true,
+            "id": "chatLocalAI_0-input-cache-BaseCache"
+          }
+        ],
+        "inputs": {
+          "cache": "",
+          "basePath": "http://host.docker.internal:1234/v1",
+          "modelName": "QuantFactory/Meta-Llama-3-8B-Instruct-GGUF",
+          "temperature": "0.8",
+          "maxTokens": "",
+          "topP": "",
+          "timeout": ""
+        },
+        "outputAnchors": [
+          {
+            "id": "chatLocalAI_0-output-chatLocalAI-ChatLocalAI|BaseChatModel|BaseChatModel|BaseLanguageModel|Runnable",
+            "name": "chatLocalAI",
+            "label": "ChatLocalAI",
+            "description": "Use local LLMs like llama.cpp, gpt4all using LocalAI",
+            "type": "ChatLocalAI | BaseChatModel | BaseChatModel | BaseLanguageModel | Runnable"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 677,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1474.0142505988224,
+        "y": -410.6441339498522
+      },
+      "dragging": false
+    },
+    {
+      "id": "postgres_0",
+      "position": {
+        "x": 1315.3071097156962,
+        "y": 319.59658063554497
+      },
+      "type": "customNode",
+      "data": {
+        "id": "postgres_0",
+        "label": "Postgres",
+        "version": 3,
+        "name": "postgres",
+        "type": "Postgres",
+        "baseClasses": [
+          "Postgres",
+          "VectorStoreRetriever",
+          "BaseRetriever"
+        ],
+        "category": "Vector Stores",
+        "description": "Upsert embedded data and perform similarity search upon query using pgvector on Postgres",
+        "inputParams": [
+          {
+            "label": "Connect Credential",
+            "name": "credential",
+            "type": "credential",
+            "credentialNames": [
+              "PostgresApi"
+            ],
+            "id": "postgres_0-input-credential-credential"
+          },
+          {
+            "label": "Host",
+            "name": "host",
+            "type": "string",
+            "id": "postgres_0-input-host-string"
+          },
+          {
+            "label": "Database",
+            "name": "database",
+            "type": "string",
+            "id": "postgres_0-input-database-string"
+          },
+          {
+            "label": "Port",
+            "name": "port",
+            "type": "number",
+            "placeholder": "6432",
+            "optional": true,
+            "id": "postgres_0-input-port-number"
+          },
+          {
+            "label": "Table Name",
+            "name": "tableName",
+            "type": "string",
+            "placeholder": "documents",
+            "additionalParams": true,
+            "optional": true,
+            "id": "postgres_0-input-tableName-string"
+          },
+          {
+            "label": "Additional Configuration",
+            "name": "additionalConfig",
+            "type": "json",
+            "additionalParams": true,
+            "optional": true,
+            "id": "postgres_0-input-additionalConfig-json"
+          },
+          {
+            "label": "Top K",
+            "name": "topK",
+            "description": "Number of top results to fetch. Default to 4",
+            "placeholder": "4",
+            "type": "number",
+            "additionalParams": true,
+            "optional": true,
+            "id": "postgres_0-input-topK-number"
+          }
+        ],
+        "inputAnchors": [
+          {
+            "label": "Document",
+            "name": "document",
+            "type": "Document",
+            "list": true,
+            "optional": true,
+            "id": "postgres_0-input-document-Document"
+          },
+          {
+            "label": "Embeddings",
+            "name": "embeddings",
+            "type": "Embeddings",
+            "id": "postgres_0-input-embeddings-Embeddings"
+          }
+        ],
+        "inputs": {
+          "document": [
+            "{{csvFile_0.data.instance}}",
+            "{{csvFile_0.data.instance}}",
+            "{{plainText_0.data.instance}}"
+          ],
+          "embeddings": "{{localAIEmbeddings_0.data.instance}}",
+          "host": "host.docker.internal",
+          "database": "postgres",
+          "port": "5432",
+          "tableName": "",
+          "additionalConfig": "",
+          "topK": ""
+        },
+        "outputAnchors": [
+          {
+            "name": "output",
+            "label": "Output",
+            "type": "options",
+            "description": "",
+            "options": [
+              {
+                "id": "postgres_0-output-retriever-Postgres|VectorStoreRetriever|BaseRetriever",
+                "name": "retriever",
+                "label": "Postgres Retriever",
+                "description": "",
+                "type": "Postgres | VectorStoreRetriever | BaseRetriever"
+              },
+              {
+                "id": "postgres_0-output-vectorStore-Postgres|VectorStore",
+                "name": "vectorStore",
+                "label": "Postgres Vector Store",
+                "description": "",
+                "type": "Postgres | VectorStore"
+              }
+            ],
+            "default": "retriever"
+          }
+        ],
+        "outputs": {
+          "output": "retriever"
+        },
+        "selected": false
+      },
+      "width": 300,
+      "height": 755,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1315.3071097156962,
+        "y": 319.59658063554497
+      },
+      "dragging": false
+    },
+    {
+      "id": "plainText_0",
+      "position": {
+        "x": 772.5557353621812,
+        "y": -443.3747549116591
+      },
+      "type": "customNode",
+      "data": {
+        "id": "plainText_0",
+        "label": "Plain Text",
+        "version": 2,
+        "name": "plainText",
+        "type": "Document",
+        "baseClasses": [
+          "Document"
+        ],
+        "category": "Document Loaders",
+        "description": "Load data from plain text",
+        "inputParams": [
+          {
+            "label": "Text",
+            "name": "text",
+            "type": "string",
+            "rows": 4,
+            "placeholder": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...",
+            "id": "plainText_0-input-text-string"
+          },
+          {
+            "label": "Metadata",
+            "name": "metadata",
+            "type": "json",
+            "optional": true,
+            "additionalParams": true,
+            "id": "plainText_0-input-metadata-json"
+          }
+        ],
+        "inputAnchors": [
+          {
+            "label": "Text Splitter",
+            "name": "textSplitter",
+            "type": "TextSplitter",
+            "optional": true,
+            "id": "plainText_0-input-textSplitter-TextSplitter"
+          }
+        ],
+        "inputs": {
+          "text": "10 cats",
+          "textSplitter": "{{tokenTextSplitter_0.data.instance}}",
+          "metadata": ""
+        },
+        "outputAnchors": [
+          {
+            "name": "output",
+            "label": "Output",
+            "type": "options",
+            "description": "Array of document objects containing metadata and pageContent",
+            "options": [
+              {
+                "id": "plainText_0-output-document-Document|json",
+                "name": "document",
+                "label": "Document",
+                "description": "Array of document objects containing metadata and pageContent",
+                "type": "Document | json"
+              },
+              {
+                "id": "plainText_0-output-text-string|json",
+                "name": "text",
+                "label": "Text",
+                "description": "Concatenated string from pageContent of documents",
+                "type": "string | json"
+              }
+            ],
+            "default": "document"
+          }
+        ],
+        "outputs": {
+          "output": "document"
+        },
+        "selected": false
+      },
+      "width": 300,
+      "height": 757,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 772.5557353621812,
+        "y": -443.3747549116591
+      },
+      "dragging": false
+    },
+    {
+      "id": "tokenTextSplitter_0",
+      "position": {
+        "x": 204.095516679242,
+        "y": -597.7166171333101
+      },
+      "type": "customNode",
+      "data": {
+        "id": "tokenTextSplitter_0",
+        "label": "Token Text Splitter",
+        "version": 1,
+        "name": "tokenTextSplitter",
+        "type": "TokenTextSplitter",
+        "baseClasses": [
+          "TokenTextSplitter",
+          "TextSplitter",
+          "BaseDocumentTransformer",
+          "Runnable"
+        ],
+        "category": "Text Splitters",
+        "description": "Splits a raw text string by first converting the text into BPE tokens, then split these tokens into chunks and convert the tokens within a single chunk back into text.",
+        "inputParams": [
+          {
+            "label": "Encoding Name",
+            "name": "encodingName",
+            "type": "options",
+            "options": [
+              {
+                "label": "gpt2",
+                "name": "gpt2"
+              },
+              {
+                "label": "r50k_base",
+                "name": "r50k_base"
+              },
+              {
+                "label": "p50k_base",
+                "name": "p50k_base"
+              },
+              {
+                "label": "p50k_edit",
+                "name": "p50k_edit"
+              },
+              {
+                "label": "cl100k_base",
+                "name": "cl100k_base"
+              }
+            ],
+            "default": "gpt2",
+            "id": "tokenTextSplitter_0-input-encodingName-options"
+          },
+          {
+            "label": "Chunk Size",
+            "name": "chunkSize",
+            "type": "number",
+            "default": 1000,
+            "optional": true,
+            "id": "tokenTextSplitter_0-input-chunkSize-number"
+          },
+          {
+            "label": "Chunk Overlap",
+            "name": "chunkOverlap",
+            "type": "number",
+            "optional": true,
+            "id": "tokenTextSplitter_0-input-chunkOverlap-number"
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "encodingName": "gpt2",
+          "chunkSize": 1000,
+          "chunkOverlap": "20"
+        },
+        "outputAnchors": [
+          {
+            "id": "tokenTextSplitter_0-output-tokenTextSplitter-TokenTextSplitter|TextSplitter|BaseDocumentTransformer|Runnable",
+            "name": "tokenTextSplitter",
+            "label": "TokenTextSplitter",
+            "description": "Splits a raw text string by first converting the text into BPE tokens, then split these tokens into chunks and convert the tokens within a single chunk back into text.",
+            "type": "TokenTextSplitter | TextSplitter | BaseDocumentTransformer | Runnable"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 473,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 204.095516679242,
+        "y": -597.7166171333101
+      },
+      "dragging": false
+    }
+  ],
+  "edges": [
+    {
+      "source": "chatLocalAI_0",
+      "sourceHandle": "chatLocalAI_0-output-chatLocalAI-ChatLocalAI|BaseChatModel|BaseChatModel|BaseLanguageModel|Runnable",
+      "target": "conversationalRetrievalQAChain_0",
+      "targetHandle": "conversationalRetrievalQAChain_0-input-model-BaseChatModel",
+      "type": "buttonedge",
+      "id": "chatLocalAI_0-chatLocalAI_0-output-chatLocalAI-ChatLocalAI|BaseChatModel|BaseChatModel|BaseLanguageModel|Runnable-conversationalRetrievalQAChain_0-conversationalRetrievalQAChain_0-input-model-BaseChatModel"
+    },
+    {
+      "source": "localAIEmbeddings_0",
+      "sourceHandle": "localAIEmbeddings_0-output-localAIEmbeddings-LocalAI Embeddings|Embeddings",
+      "target": "postgres_0",
+      "targetHandle": "postgres_0-input-embeddings-Embeddings",
+      "type": "buttonedge",
+      "id": "localAIEmbeddings_0-localAIEmbeddings_0-output-localAIEmbeddings-LocalAI Embeddings|Embeddings-postgres_0-postgres_0-input-embeddings-Embeddings"
+    },
+    {
+      "source": "postgres_0",
+      "sourceHandle": "postgres_0-output-retriever-Postgres|VectorStoreRetriever|BaseRetriever",
+      "target": "conversationalRetrievalQAChain_0",
+      "targetHandle": "conversationalRetrievalQAChain_0-input-vectorStoreRetriever-BaseRetriever",
+      "type": "buttonedge",
+      "id": "postgres_0-postgres_0-output-retriever-Postgres|VectorStoreRetriever|BaseRetriever-conversationalRetrievalQAChain_0-conversationalRetrievalQAChain_0-input-vectorStoreRetriever-BaseRetriever"
+    },
+    {
+      "source": "plainText_0",
+      "sourceHandle": "plainText_0-output-document-Document|json",
+      "target": "postgres_0",
+      "targetHandle": "postgres_0-input-document-Document",
+      "type": "buttonedge",
+      "id": "plainText_0-plainText_0-output-document-Document|json-postgres_0-postgres_0-input-document-Document"
+    },
+    {
+      "source": "tokenTextSplitter_0",
+      "sourceHandle": "tokenTextSplitter_0-output-tokenTextSplitter-TokenTextSplitter|TextSplitter|BaseDocumentTransformer|Runnable",
+      "target": "plainText_0",
+      "targetHandle": "plainText_0-input-textSplitter-TextSplitter",
+      "type": "buttonedge",
+      "id": "tokenTextSplitter_0-tokenTextSplitter_0-output-tokenTextSplitter-TokenTextSplitter|TextSplitter|BaseDocumentTransformer|Runnable-plainText_0-plainText_0-input-textSplitter-TextSplitter"
+    }
+  ]
+}
